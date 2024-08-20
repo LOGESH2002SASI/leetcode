@@ -1,0 +1,38 @@
+17.letter combination of a phone number in leetcode
+class Solution {
+    public List<String> letterCombinations(String digits) {
+        List<String>result=new ArrayList<>();
+        if(digits.length()==0)
+        {
+            return result;
+        }
+        HashMap<Character,String>dial=new HashMap<>();
+        dial.put('2',"abc");
+        dial.put('3',"def");
+        dial.put('4',"ghi");
+        dial.put('5',"jkl");
+        dial.put('6',"mno");
+        dial.put('7',"pqrs");
+        dial.put('8',"tuv");
+        dial.put('9',"wxyz");
+        String name="";
+        solve(0,result,digits,dial,name);
+        return result;
+    }
+    public static void solve(int i,List<String>result,String digits,HashMap<Character,String>dial,String name)
+    {
+        if(i==digits.length())
+        {
+           result.add(name);
+           return;
+        }
+        else
+        {
+           String pair=dial.get(digits.charAt(i));
+           for(int ind=0;ind<=pair.length()-1;ind++)
+           {
+            solve(i+1,result,digits,dial,name+pair.charAt(ind));
+           }
+        }
+    }
+}
