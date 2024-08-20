@@ -1,0 +1,29 @@
+Generate parentheses
+solution:
+class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String>result=new ArrayList<>();
+        String name="";
+        solve(n,result,name,0,0);
+        return result;
+    }
+    public static void solve(int n,List<String>result,String name,int op,int cl)
+    {
+        if(op==n && cl==n)
+        {
+           result.add(name);
+           return;
+        }
+        else
+        {
+            if(op<n)
+            {
+                solve(n,result,name+"(",op+1,cl);
+            }
+            if(op>cl)
+            {
+                solve(n,result,name+")",op,cl+1);
+            }
+        }
+    }
+}
